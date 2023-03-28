@@ -32,9 +32,6 @@ export default function List(){
        return( <div key = {i}>
             {i+1}. Kayıt
             <br></br>
-            {dt.text1}
-            <br></br>
-            {dt.text2}
             <br></br>
             {dt.combinedText}
             <br></br>

@@ -3,7 +3,7 @@ import Button from '../component/Button';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/axiosConfig';
-
+import '../index.css';
 
 function Home() {
   const navigate = useNavigate();
@@ -29,11 +29,6 @@ function Home() {
     
     {components.map((item, i) => ( <Input id = {i} key = {i} text = {texts[i]} onChange = {changeText} /> ))} 
     <Button onClick={addComponent}/> 
-    <br></br> 
-    <br></br> 
-    <button onClick = {async()=>{
-        navigate('/list');
-    }}>Görüntüle</button>
 
     <br></br>    
     <br></br> 
@@ -49,21 +44,32 @@ function Home() {
       .catch(err => console.error(err));
       setCombine(data);
       console.log(data);
-      }}>Birleştir</button>
+      }}>Metinleri Birleştir</button>
 
     <br></br> 
     <br></br> 
     <button onClick = {async()=>{
+
         const data = await api
-        .post("/addTexts",{giris1:"asd",giris2:"test2",cikti:"birlestirme"})
+        .post("/addTexts",{cikti:combine.data})
           //,{texts: texts}
         .catch(err => console.error(err));
 
         console.log(data);
 
-    }}>Kaydet</button>
-    
-    <div></div>
+    }}>Birleşik Metni Kaydet</button>
+
+    <br></br> 
+    <br></br> 
+
+    <button onClick = {async()=>{
+        navigate('/list');
+    }}>Birleşik Metinleri Listele</button>
+
+    <br></br>
+    <br></br>
+
+    <div>Birleştirilmiş Metin:  {combine.data}</div>
     
     </div>
     
