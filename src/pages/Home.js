@@ -11,7 +11,7 @@ function Home() {
   const [counter, setCount] = useState(0);
   const [texts, setTexts] = useState({});
   const [response, setResponse] = useState("");
-  const [combine, setCombine] = useState("");
+  const [combine, setCombine] = useState({});
 
   console.log(texts);
   
@@ -41,11 +41,13 @@ function Home() {
     <button onClick={async() =>{
 
       const data = await api
-      .post("/combineTexts",{giris1:"asd",giris2:"test2"})
-        //,{texts: texts}
+      .post("/combineTexts",texts)
+
+      // {giris1:"asd",giris2:"test2"}
+      //,{texts: texts}
+
       .catch(err => console.error(err));
       setCombine(data);
-
       console.log(data);
       }}>Birleştir</button>
 
@@ -61,7 +63,7 @@ function Home() {
 
     }}>Kaydet</button>
     
-    <div>{combine.data}</div>
+    <div></div>
     
     </div>
     
