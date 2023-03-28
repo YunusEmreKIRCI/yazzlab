@@ -38,9 +38,6 @@ function Home() {
       const data = await api
       .post("/combineTexts",texts)
 
-      // {giris1:"asd",giris2:"test2"}
-      //,{texts: texts}
-
       .catch(err => console.error(err));
       setCombine(data);
       console.log(data);
@@ -52,7 +49,6 @@ function Home() {
 
         const data = await api
         .post("/addTexts",{cikti:combine.data})
-          //,{texts: texts}
         .catch(err => console.error(err));
 
         console.log(data);

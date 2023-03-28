@@ -10,7 +10,6 @@ export default function List(){
             try {
                 const res = await api.get("/listTexts")
                 setCountry(res);
-                //setResponse(response.data);
               }
               
               catch(err){
@@ -18,12 +17,6 @@ export default function List(){
               }
           }
           fetchData();
-
-    // const getCountry = async() =>{
-    //     const data = await axios.get('https://restcountries.com/v3.1/all');
-    //     setCountry(data);
-    // }
-    // getCountry();
 })
 
     return(
@@ -43,7 +36,3 @@ export default function List(){
         </div>
     );
 }
-/*
-inputs:{a,b,c} 
-output: abc
-*/
