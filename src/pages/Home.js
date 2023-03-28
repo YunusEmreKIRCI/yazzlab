@@ -1,9 +1,8 @@
 import Input from '../component/Input';
 import Button from '../component/Button';
-import { useState } from 'react'; 
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import api from '../api/axiosConfig';
 
 
 function Home() {
@@ -12,6 +11,8 @@ function Home() {
   const [counter, setCount] = useState(0);
   const [texts, setTexts] = useState({});
   const [response, setResponse] = useState("");
+  const [combine, setCombine] = useState("");
+
   console.log(texts);
   
   function addComponent(){ 
@@ -24,32 +25,45 @@ function Home() {
   }
   return (
     <div>
-    
+    <br></br> 
     
     {components.map((item, i) => ( <Input id = {i} key = {i} text = {texts[i]} onChange = {changeText} /> ))} 
     <Button onClick={addComponent}/> 
+    <br></br> 
+    <br></br> 
     <button onClick = {async()=>{
         navigate('/list');
-        
     }}>Görüntüle</button>
-    
+
+    <br></br>    
+    <br></br> 
     
     <button onClick={async() =>{
-      const data = await axios
-        .post("",{texts: texts})
-        .then(function (res) {
-          console.log("sds");
-          //setResponse(res);
-        })
-        .catch(err => console.error(err));
+
+      const data = await api
+      .post("/combineTexts",{giris1:"asd",giris2:"test2"})
+        //,{texts: texts}
+      .catch(err => console.error(err));
+      setCombine(data);
+
+      console.log(data);
       }}>Birleştir</button>
+
+    <br></br> 
+    <br></br> 
+    <button onClick = {async()=>{
+        const data = await api
+        .post("/addTexts",{giris1:"asd",giris2:"test2",cikti:"birlestirme"})
+          //,{texts: texts}
+        .catch(err => console.error(err));
+
+        console.log(data);
+
+    }}>Kaydet</button>
     
-    
-    <div>{response}</div>
-    
+    <div>{combine.data}</div>
     
     </div>
-    
     
   );
 }

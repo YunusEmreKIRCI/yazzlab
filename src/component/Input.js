@@ -15,7 +15,7 @@ export default function Input(props){
   return( 
     
     <div>
-    {props.id}. Metin girişi:
+    {props.id+1}. Metin girişi:
     <input
      type="text" 
      value = {props.text}
